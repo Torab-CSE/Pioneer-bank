@@ -9,6 +9,183 @@
 
 </head>
 <body>
-    <h1>Welcome To Pioneer Bank</h1>
+    <div id="loginArea">
+        <h1 class="text-center">Welcome To Pioneer Bank</h1>
+        <div class="submitArea" >
+            <h4>Login</h4>
+            </br>
+            <input type="text" class="form-control" placeholder="Email">
+            </br>   
+            <input type="password" class="form-control" placeholder="password">
+            <button id="buttonSubmit" class="btn btn-success buttonStyle"> Submit</button>
+        </div>
+    </div>
+
+    <div id="transactionArea">
+        <div class="row  text-center">
+            <div class="col-md-4 ">
+                <div class=" deposit status">
+                    <h4>Deposit</h4>
+                    <h2>$<span id="depoNumber">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="withdraw status">
+                    <h4>Withdraw</h4>
+                    <h2>$<span id="currentWithdraw">00</span></h2>
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="balance status">
+                    <h4>Balance</h4>
+                    <h2>$<span id="currentBalance">1240</span></h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="submitArea">
+                    <h4>Deposit</h4>
+                    <input id="depoAmount"type="text" class="form-control" placeholder="$Amount you want to deposit">
+                    <br>
+                    <button id="btnDeposit"class="btn btn-success buttonStyle">Deposit</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="submitArea">
+                    <h4>Withdraw</h4>
+                    <input id="withAmount"type="text" class="form-control" placeholder="$Amount you want to withdraw">
+                    <br>
+                    <button id="btnWithdraw" class="btn btn-success buttonStyle">Withdraw</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+//deposit
+        const buttonIndex=document.getElementById('buttonSubmit');
+        buttonIndex.addEventListener('click',function(){
+            const indexPage=document.getElementById('loginArea');
+            indexPage.style.display="none";
+            const transactionPage=document.getElementById('transactionArea');
+            transactionPage.style.display="block";
+        })
+        const buttonDeposit=document.getElementById('btnDeposit');
+        buttonDeposit.addEventListener('click',function(){
+
+            const presentDeposit=document.getElementById('depoAmount').value;
+            const preDeposit=parseFloat(presentDeposit);
+
+            /*const previousDeposit=document.getElementById('depoNumber').innerText;
+            const prevDeposit=parseFloat(previousDeposit);
+            const totalDeposit=preDeposit+prevDeposit;
+            document.getElementById('depoNumber').innerText=totalDeposit;
+
+            const mainBalance=document.getElementById('currentBalance').innerText;
+            const balance=parseFloat(mainBalance);
+            const totalBalance=balance+preDeposit;
+            document.getElementById('currentBalance').innerText=totalBalance;*/
+
+            document.getElementById('depoAmount').value=null;
+            updateSpanText('depoNumber',preDeposit);
+            updateSpanText('currentBalance',preDeposit);
+
+        })
+
+        function updateSpanText(id,preDeposit){
+            const currentBalance=document.getElementById(id).innerText;
+            const current=parseFloat(currentBalance);
+            const totalBalance=current+preDeposit;
+            document.getElementById(id).innerText=totalBalance;
+        }
+//withdraw
+            const buttonWithdraw=document.getElementById('btnWithdraw');
+            buttonWithdraw.addEventListener('click',function(){
+                const presentWithdraw=document.getElementById('withAmount').value;
+                const preWithdraw=parseFloat(presentWithdraw);
+                document.getElementById('withAmount').value=null;
+
+                updateSpanText('currentWithdraw',preWithdraw);
+                updateSpanText('currentBalance',-1*preWithdraw)
+            })
+        
+        
+
+
+
+
+
+
+
+   /*     //login eventHandler
+        const btnSubmit=document.getElementById('buttonSubmit');
+        btnSubmit.addEventListener('click',function(){
+            const hideDisplay=document.getElementById('loginArea');
+            hideDisplay.style.display="none";
+
+            const showDisplay=document.getElementById('transactionArea');
+            showDisplay.style.display="block";
+        })
+        
+
+        ///deposit EventHandler
+        const deposit=document.getElementById('btnDeposit');
+        deposit.addEventListener('click',function(){
+           const addAmount= document.getElementById('depoAmount').value;
+            var depositAmount=parseFloat(addAmount);
+
+            /*const currentNumber=document.getElementById('depoNumber').innerText;
+            var currentAmount=parseFloat(currentNumber);
+            const totalAmount=depositAmount+currentAmount;
+            console.log(totalAmount);
+            document.getElementById('depoNumber').innerText=totalAmount;
+
+            document.getElementById('depoAmount').value=null;*/
+ //balance
+           /* const balanceNumber=document.getElementById('currentBalance').innerText;
+            var balanceAmount=parseFloat();
+            
+            const totalBalance=depositAmount+balanceAmount;
+            console.log(totalBalance);
+            document.getElementById('currentBalance').innerText=totalBalance; //
+
+            updateSpanText('depoNumber',depositAmount);
+            updateSpanText('currentBalance',depositAmount);
+            function updateSpanText(id,depositAmount){
+                const current=document.getElementById(id).innerText;
+                var currentAmount=parseFloat(current);
+            
+                const total=depositAmount+currentAmount;
+                document.getElementById(id).innerText=total;
+                document.getElementById(id).value="";
+            }
+
+        })
+
+        ///withdraw Event Handler
+        const withdraw=document.getElementById('btnWithdraw');
+        withdraw.addEventListener('click',function(){
+            const subAmount=document.getElementById('withAmount').value;
+            const withdrawAmount=parseFloat(subAmount);
+            document.getElementById('withAmount').value=null;
+            
+           const withdrawNumber=document.getElementById('currentWithdraw').innerText;
+           const withCurrentAmount=parseFloat(withdrawNumber);
+           const totalWithdraw=withdrawAmount+withCurrentAmount;
+           document.getElementById('currentWithdraw').innerText=totalWithdraw;
+           document.getElementById('withAmount').value=null;
+
+
+           var presentBalance=document.getElementById('currentBalance').innerText;
+            var transformBalance=parseFloat(presentBalance);
+
+            const totalMoney=transformBalance-withdrawAmount;
+            document.getElementById('currentBalance').innerText=totalMoney;
+
+        })*/
+
+    </script>
+    
 </body>
 </html>
